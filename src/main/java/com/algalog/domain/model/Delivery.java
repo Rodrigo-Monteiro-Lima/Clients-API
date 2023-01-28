@@ -25,7 +25,7 @@ public class Delivery {
 	private Recipient recipient;
 	private BigDecimal fee;
 	@Enumerated(EnumType.STRING)
-	private DeliveryStatus deliveryStatus ;
+	private DeliveryStatus status ;
 	private LocalDateTime ordererDate;
 	private LocalDateTime finishDate;
 	
@@ -53,11 +53,11 @@ public class Delivery {
 	public void setFee(BigDecimal fee) {
 		this.fee = fee;
 	}
-	public DeliveryStatus getDeliveryStatus() {
-		return deliveryStatus;
+	public DeliveryStatus getStatus() {
+		return status;
 	}
-	public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
-		this.deliveryStatus = deliveryStatus;
+	public void setStatus(DeliveryStatus status) {
+		this.status = status;
 	}
 	public LocalDateTime getOrdererDate() {
 		return ordererDate;

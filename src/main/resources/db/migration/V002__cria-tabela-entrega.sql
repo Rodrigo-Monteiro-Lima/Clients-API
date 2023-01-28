@@ -4,7 +4,7 @@ CREATE TABLE delivery (
 	fee DECIMAL(10,2) NOT NULL,
 	status VARCHAR(20) NOT NULL,
 	orderer_date DATETIME NOT NULL,
-	finish_date DATETIME NOT NULL,
+	finish_date DATETIME,
 	
 	recipient_name VARCHAR(60) NOT NULL,
 	recipient_adress VARCHAR(255) NOT NULL,

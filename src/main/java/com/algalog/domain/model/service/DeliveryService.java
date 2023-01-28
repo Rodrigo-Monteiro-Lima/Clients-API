@@ -2,6 +2,7 @@ package com.algalog.domain.model.service;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,13 +13,13 @@ import com.algalog.domain.repository.DeliveryRepository;
 @Service
 public class DeliveryService {
 	
-private DeliveryRepository deliveryRepository;
+	@Autowired
+	private DeliveryRepository deliveryRepository;
 	
 	@Transactional
-	public Delivery request(Delivery delivery) {
-		delivery.setDeliveryStatus(DeliveryStatus.PENDING);
-		delivery.setOrdererDate(LocalDateTime.now());
-		
+	public Delivery add(Delivery delivery) {
+		delivery.setStatus(DeliveryStatus.PENDING);
+		delivery.setOrdererDate(LocalDateTime.now());		
 		
 		return deliveryRepository.save(delivery);
 	}
