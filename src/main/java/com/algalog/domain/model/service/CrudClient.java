@@ -14,6 +14,11 @@ public class CrudClient {
 	@Autowired
 	private ClientRepository clientRepository;
 	
+	public Client find(Long clientId) {
+		return clientRepository.findById(clientId)
+				.orElseThrow(() -> new BusinessException("Client not found"));
+	}
+	
 	@Transactional
 	public Client save(Client client) {
 		boolean isSaved = clientRepository.findByEmail(client.getEmail())

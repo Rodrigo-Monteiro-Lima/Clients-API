@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class Problem {
 	private Integer status;
-	private LocalDateTime datelHour;
+	private LocalDateTime dateHour;
 	private String title;
 	private List<Field> field;
 	
@@ -25,11 +25,11 @@ public class Problem {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public LocalDateTime getDatelHour() {
-		return datelHour;
+	public LocalDateTime getDateHour() {
+		return dateHour;
 	}
-	public void setDatelHour(LocalDateTime datelHour) {
-		this.datelHour = datelHour;
+	public void setDateHour(LocalDateTime dateHour) {
+		this.dateHour = dateHour;
 	}
 	public String getTitle() {
 		return title;

@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -24,9 +27,12 @@ public class Delivery {
 	@Embedded
 	private Recipient recipient;
 	private BigDecimal fee;
+	@JsonProperty(access = Access.READ_ONLY)
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status ;
+	@JsonProperty(access = Access.READ_ONLY)
 	private LocalDateTime ordererDate;
+	@JsonProperty(access = Access.READ_ONLY)
 	private LocalDateTime finishDate;
 	
 	public Long getId() {

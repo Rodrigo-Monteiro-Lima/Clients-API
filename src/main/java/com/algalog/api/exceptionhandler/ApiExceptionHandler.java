@@ -41,7 +41,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		Problem problem = new Problem();
 		problem.setStatus(status.value());
-		problem.setDatelHour(LocalDateTime.now());
+		problem.setDateHour(LocalDateTime.now());
 		problem.setTitle("One or more fields are invalid.Fill 'em properly and try again.");
 		problem.setField(fields);
 		
@@ -54,7 +54,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		Problem problem = new Problem();
 		problem.setStatus(status.value());
-		problem.setDatelHour(LocalDateTime.now());
+		problem.setDateHour(LocalDateTime.now());
 		problem.setTitle(ex.getMessage());
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
