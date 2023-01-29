@@ -17,7 +17,6 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Client {
 	
-	@NotNull(groups = ValidationGroups.ClientId.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

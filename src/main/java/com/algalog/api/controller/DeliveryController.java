@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.algalog.api.assembler.DeliveryAssembler;
 import com.algalog.api.model.DeliveryModel;
 import com.algalog.api.model.RecipientModel;
+import com.algalog.api.model.input.DeliveryInput;
 import com.algalog.domain.model.Delivery;
 import com.algalog.domain.model.service.DeliveryService;
 import com.algalog.domain.repository.DeliveryRepository;
@@ -36,8 +37,9 @@ public class DeliveryController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public DeliveryModel request(@Valid @RequestBody Delivery delivery) {
-		Delivery addDelivery =  deliveryService.add(delivery);
+	public DeliveryModel request(@Valid @RequestBody DeliveryInput deliveryInput) {
+		Delivery newDelivery = deliveryAssembler.toEntity(deliveryInput);
+		Delivery addDelivery =  deliveryService.add(newDelivery);
 		return deliveryAssembler.toModel(addDelivery);
 	}
 	
