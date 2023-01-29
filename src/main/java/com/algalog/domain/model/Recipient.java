@@ -2,18 +2,24 @@ package com.algalog.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotBlank;
 
 @Embeddable
 public class Recipient {
 	
+	@NotBlank
 	@Column(name = "recipient_name")
 	private String name;
+	@NotBlank
 	@Column(name = "recipient_adress")
 	private String adress;
+	@NotBlank
 	@Column(name = "recipient_number")
 	private String number;
+	@NotBlank
 	@Column(name = "recipient_complement")
 	private String complement;
+	@NotBlank
 	@Column(name = "recipient_neighborhood")
 	private String neighborhood;
 	
