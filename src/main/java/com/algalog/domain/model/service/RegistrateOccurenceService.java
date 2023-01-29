@@ -16,7 +16,7 @@ public class RegistrateOccurenceService {
 	private SearchDeliveryService searchDeliveryService;
 	
 	@Transactional
-	private Occurrence register(Long deliveryId, String description) {
+	public Occurrence register(Long deliveryId, String description) {
 		Delivery delivery = searchDeliveryService.search(deliveryId);
 		return delivery.addOccurence(description);
 	}
