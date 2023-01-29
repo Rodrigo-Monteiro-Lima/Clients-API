@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algalog.api.assembler.DeliveryAssembler;
 import com.algalog.api.model.DeliveryModel;
 import com.algalog.api.model.RecipientModel;
 import com.algalog.domain.model.Delivery;
@@ -31,12 +32,13 @@ public class DeliveryController {
 	@Autowired
 	private DeliveryRepository deliveryRepository;
 	@Autowired
-	private ModelMapper modelMapper;
+	private DeliveryAssembler deliveryAssembler;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Delivery request(@Valid @RequestBody Delivery delivery) {
-		return deliveryService.add(delivery);
+	public DeliveryModel request(@Valid @RequestBody Delivery delivery) {
+		Delivery addDelivery =  deliveryService.add(delivery);
+		return deliveryAssembler.toModel(addDelivery);
 	}
 	
 	@GetMapping
@@ -47,11 +49,7 @@ public class DeliveryController {
 	@GetMapping("/{deliveryId}")
 	public ResponseEntity<DeliveryModel> search(@PathVariable Long deliveryId) {
 		return deliveryRepository.findById(deliveryId)
-				.map(delivery -> {
-					DeliveryModel deliveryModel = modelMapper.map(delivery, DeliveryModel.class);
-					
-					return ResponseEntity.ok(deliveryModel);					
-				})
+				.map(delivery -> ResponseEntity.ok(deliveryAssembler.toModel(delivery)))
 				.orElse(ResponseEntity.notFound().build());
 	}
 }
