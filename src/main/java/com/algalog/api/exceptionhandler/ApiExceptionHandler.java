@@ -42,7 +42,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		Problem problem = new Problem();
 		problem.setStatus(status.value());
 		problem.setDateHour(LocalDateTime.now());
-		problem.setTitle("One or more fields are invalid.Fill 'em properly and try again.");
+		problem.setTitle("One or more fields are invalid. Fill'em properly and try again.");
 		problem.setField(fields);
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);

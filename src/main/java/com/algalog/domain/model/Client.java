@@ -2,6 +2,8 @@ package com.algalog.domain.model;
 
 import java.util.Objects;
 
+import com.algalog.domain.ValidationGroups;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,12 +13,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.groups.Default;
 
 @Entity
 public class Client {
 	
-	@NotNull(groups = Default.class)
+	@NotNull(groups = ValidationGroups.ClientId.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
