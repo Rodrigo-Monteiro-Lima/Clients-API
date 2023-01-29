@@ -42,8 +42,8 @@ public class DeliveryController {
 	}
 	
 	@GetMapping
-	public List<Delivery> list() {
-		return deliveryRepository.findAll();
+	public List<DeliveryModel> list() {
+		return deliveryAssembler.toCollectionModel(deliveryRepository.findAll());
 	}
 	
 	@GetMapping("/{deliveryId}")
