@@ -3,6 +3,8 @@ package com.algalog.domain.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.algalog.domain.ValidationGroups;
@@ -17,6 +19,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.groups.ConvertGroup;
@@ -33,6 +36,8 @@ public class Delivery {
 	@Embedded
 	private Recipient recipient;
 	private BigDecimal fee;
+	@OneToMany(mappedBy = "delivery")
+	private List<Occurrence> occurrences = new ArrayList<>();
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status ;
 	private OffsetDateTime ordererDate;
