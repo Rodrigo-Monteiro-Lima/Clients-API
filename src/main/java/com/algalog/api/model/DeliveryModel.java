@@ -8,7 +8,7 @@ import com.algalog.domain.model.DeliveryStatus;
 public class DeliveryModel {
 	
 	private Long id;
-	private String clientName;
+	private ClientSummaryModel client;
 	private RecipientModel recipient;
 	private BigDecimal fee;
 	private DeliveryStatus status;
@@ -21,11 +21,11 @@ public class DeliveryModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getClientName() {
-		return clientName;
+	public ClientSummaryModel getClient() {
+		return client;
 	}
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setClient(ClientSummaryModel client) {
+		this.client = client;
 	}
 	public RecipientModel getRecipient() {
 		return recipient;
