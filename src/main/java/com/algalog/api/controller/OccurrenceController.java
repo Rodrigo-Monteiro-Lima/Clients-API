@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algalog.api.assembler.OccurrenceAssembler;
 import com.algalog.api.model.OccurrenceModel;
 import com.algalog.api.model.input.OccurrenceInput;
 import com.algalog.domain.model.Occurrence;
@@ -22,6 +23,8 @@ public class OccurrenceController {
 	
 	@Autowired
 	private RegistrateOccurenceService registrateOccurenceService;
+	@Autowired
+	private OccurrenceAssembler occurrenceAssembler;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -31,7 +34,7 @@ public class OccurrenceController {
 		Occurrence registeredOccurrence = registrateOccurenceService
 				.register(deliveryId, occurrenceInput.getDescription());
 		
-		return registeredOccurrence;
+		return occurrenceAssembler.toModel(registeredOccurrence);
 	}
 
 }
