@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.algalog.api.model.DeliveryModel;
+import com.algalog.api.model.input.DeliveryInput;
 import com.algalog.domain.model.Delivery;
 
 @Component
@@ -24,5 +25,9 @@ public class DeliveryAssembler {
 		return deliveries.stream()
 				.map(this::toModel)
 				.collect(Collectors.toList());				
+	}
+	
+	public Delivery toEntity(DeliveryInput deliveryInput) {
+		return modelMapper.map(deliveryInput, Delivery.class);
 	}
 }
