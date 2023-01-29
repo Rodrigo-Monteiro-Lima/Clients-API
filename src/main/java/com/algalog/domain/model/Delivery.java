@@ -11,6 +11,7 @@ import com.algalog.domain.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -36,7 +37,7 @@ public class Delivery {
 	@Embedded
 	private Recipient recipient;
 	private BigDecimal fee;
-	@OneToMany(mappedBy = "delivery")
+	@OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
 	private List<Occurrence> occurrences = new ArrayList<>();
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status ;
