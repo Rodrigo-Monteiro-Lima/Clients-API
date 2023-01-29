@@ -85,6 +85,12 @@ public class Delivery {
 	public void setFinishDate(OffsetDateTime finishDate) {
 		this.finishDate = finishDate;
 	}
+	public List<Occurrence> getOccurrences() {
+		return occurrences;
+	}
+	public void setOccurrences(List<Occurrence> occurrences) {
+		this.occurrences = occurrences;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -99,6 +105,16 @@ public class Delivery {
 			return false;
 		Delivery other = (Delivery) obj;
 		return Objects.equals(id, other.id);
+	}
+	public Occurrence addOccurence(String description) {
+		Occurrence occurrence = new Occurrence();
+		occurrence.setDescription(description);
+		occurrence.setRegistrationDate(OffsetDateTime.now());
+		occurrence.setDelivery(this);
+		
+		this.getOccurrences().add(occurrence);
+		
+		return occurrence;
 	}
 
 }
