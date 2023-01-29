@@ -15,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Delivery {
@@ -22,10 +24,13 @@ public class Delivery {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Valid
+	@NotNull
 	@ManyToOne	
 	private Client client;
 	@Embedded
 	private Recipient recipient;
+	@NotNull
 	private BigDecimal fee;
 	@JsonProperty(access = Access.READ_ONLY)
 	@Enumerated(EnumType.STRING)

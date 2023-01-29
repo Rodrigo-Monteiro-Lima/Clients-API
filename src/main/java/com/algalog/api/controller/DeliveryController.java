@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.algalog.domain.model.Delivery;
 import com.algalog.domain.model.service.DeliveryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/deliveries")
 public class DeliveryController {
@@ -20,7 +22,7 @@ public class DeliveryController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Delivery request(@RequestBody Delivery delivery) {
+	public Delivery request(@Valid @RequestBody Delivery delivery) {
 		return deliveryService.add(delivery);
 	}
 }
