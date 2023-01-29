@@ -10,15 +10,14 @@ import com.algalog.domain.model.Occurrence;
 import com.algalog.domain.repository.DeliveryRepository;
 
 @Service
-public class OccurenceService {
-	
+public class SearchDeliveryService {
+
 	@Autowired
 	private DeliveryRepository deliveryRepository;
 	
-	@Transactional
-	private Occurrence register(Long deliveryId, String description) {
-		Delivery delivery = deliveryRepository.findById(deliveryId)
+	public Delivery search(Long deliveryId) {
+		return deliveryRepository.findById(deliveryId)
 				.orElseThrow(() -> new BusinessException("Delivery not found"));
-		return delivery.addOccurence(description);
 	}
+	
 }
