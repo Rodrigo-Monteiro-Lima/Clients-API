@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.algalog.domain.exception.BusinessException;
+import com.algalog.domain.exception.NotFoundEntityException;
 import com.algalog.domain.model.Delivery;
 import com.algalog.domain.model.Occurrence;
 import com.algalog.domain.repository.DeliveryRepository;
@@ -17,7 +18,7 @@ public class SearchDeliveryService {
 	
 	public Delivery search(Long deliveryId) {
 		return deliveryRepository.findById(deliveryId)
-				.orElseThrow(() -> new BusinessException("Delivery not found"));
+				.orElseThrow(() -> new NotFoundEntityException("Delivery not found"));
 	}
 	
 }
