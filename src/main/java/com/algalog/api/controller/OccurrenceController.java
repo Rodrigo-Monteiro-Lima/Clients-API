@@ -48,7 +48,7 @@ public class OccurrenceController {
 	public List<OccurrenceModel> list(@PathVariable Long deliveryId) {
 		Delivery delivery = searchDeliveryService.search(deliveryId);
 		
-		return delivery.getOccurrences();
+		return occurrenceAssembler.toCollectionModel(delivery.getOccurrences());
 	}
 
 }
