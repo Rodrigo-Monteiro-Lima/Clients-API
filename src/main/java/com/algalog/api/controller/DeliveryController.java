@@ -2,6 +2,7 @@ package com.algalog.api.controller;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,8 @@ public class DeliveryController {
 	private DeliveryService deliveryService;
 	@Autowired
 	private DeliveryRepository deliveryRepository;
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -45,19 +48,7 @@ public class DeliveryController {
 	public ResponseEntity<DeliveryModel> search(@PathVariable Long deliveryId) {
 		return deliveryRepository.findById(deliveryId)
 				.map(delivery -> {
-					DeliveryModel deliveryModel = new DeliveryModel();
-					deliveryModel.setId(delivery.getId());
-					deliveryModel.setClientName(delivery.getClient().getName());
-					deliveryModel.setRecipient(new RecipientModel());
-					deliveryModel.getRecipient().setName(delivery.getRecipient().getName());
-					deliveryModel.getRecipient().setAdress(delivery.getRecipient().getAdress());
-					deliveryModel.getRecipient().setNumber(delivery.getRecipient().getNumber());
-					deliveryModel.getRecipient().setComplement(delivery.getRecipient().getComplement());
-					deliveryModel.getRecipient().setNeighborhood(delivery.getRecipient().getNeighborhood());
-					deliveryModel.setFee(delivery.getFee());
-					deliveryModel.setStatus(delivery.getStatus());
-					deliveryModel.setOrdererDate(delivery.getOrdererDate());
-					deliveryModel.setFinishDate(delivery.getFinishDate());
+					DeliveryModel deliveryModel = modelMapper.map(delivery, DeliveryModel.class);
 					
 					return ResponseEntity.ok(deliveryModel);					
 				})
