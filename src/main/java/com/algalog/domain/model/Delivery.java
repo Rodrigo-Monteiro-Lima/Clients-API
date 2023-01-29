@@ -2,6 +2,7 @@ package com.algalog.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 import com.algalog.domain.ValidationGroups;
@@ -42,9 +43,9 @@ public class Delivery {
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status ;
 	@JsonProperty(access = Access.READ_ONLY)
-	private LocalDateTime ordererDate;
+	private OffsetDateTime ordererDate;
 	@JsonProperty(access = Access.READ_ONLY)
-	private LocalDateTime finishDate;
+	private OffsetDateTime finishDate;
 	
 	public Long getId() {
 		return id;
@@ -76,16 +77,16 @@ public class Delivery {
 	public void setStatus(DeliveryStatus status) {
 		this.status = status;
 	}
-	public LocalDateTime getOrdererDate() {
+	public OffsetDateTime getOrdererDate() {
 		return ordererDate;
 	}
-	public void setOrdererDate(LocalDateTime ordererDate) {
+	public void setOrdererDate(OffsetDateTime ordererDate) {
 		this.ordererDate = ordererDate;
 	}
-	public LocalDateTime getFinishDate() {
+	public OffsetDateTime getFinishDate() {
 		return finishDate;
 	}
-	public void setFinishDate(LocalDateTime finishDate) {
+	public void setFinishDate(OffsetDateTime finishDate) {
 		this.finishDate = finishDate;
 	}
 	@Override
