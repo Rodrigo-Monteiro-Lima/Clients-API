@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.algalog.domain.ValidationGroups;
+import com.algalog.domain.exception.BusinessException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -116,6 +117,17 @@ public class Delivery {
 		this.getOccurrences().add(occurrence);
 		
 		return occurrence;
+	}
+	public void conclude() {
+		
+		if (!DeliveryStatus.PENDING.equals(getStatus())) {
+			throw new BusinessException("Delivery cannot be completed");
+		}
+		
+		setStatus(DeliveryStatus.FINISHED);
+		setFinishDate(OffsetDateTime.now());
+			
+		
 	}
 
 }
