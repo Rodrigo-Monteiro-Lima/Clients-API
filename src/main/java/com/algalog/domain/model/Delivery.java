@@ -120,14 +120,16 @@ public class Delivery {
 	}
 	public void conclude() {
 		
-		if (!DeliveryStatus.PENDING.equals(getStatus())) {
+		if (!canBeFinished()) {
 			throw new BusinessException("Delivery cannot be completed");
 		}
 		
 		setStatus(DeliveryStatus.FINISHED);
-		setFinishDate(OffsetDateTime.now());
-			
-		
+		setFinishDate(OffsetDateTime.now());		
+	}
+	
+	public boolean canBeFinished() {
+		return DeliveryStatus.PENDING.equals(getStatus());
 	}
 
 }
